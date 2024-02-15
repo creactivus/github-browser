@@ -1,4 +1,4 @@
-package pl.atipera.githubbrowser.models;
+package pl.atipera.githubbrowser.model;
 
 import java.util.List;
 
@@ -14,8 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Repository {
+public class Branch {
     private String name;
-    private String owner;
-    private List<Branch> branches;
+    private List<Commit> commits;
 }
