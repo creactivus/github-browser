@@ -12,7 +12,7 @@ import pl.atipera.githubbrowser.error.exception.UserNotFoundException;
 import pl.atipera.githubbrowser.model.Repository;
 
 @Service
-public class GitHubService {
+public class RepositoryService {
     private static final String GITHUB_URL = "https://api.github.com";
     private static final String USER_REPOS_URL = "/users/%s/repos";
     private static final String REPO_BRANCHES_URL = "/repos/%s/%s/branches";

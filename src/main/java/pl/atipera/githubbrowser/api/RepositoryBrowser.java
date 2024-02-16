@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import pl.atipera.githubbrowser.model.Repository;
-import pl.atipera.githubbrowser.service.GitHubService;
+import pl.atipera.githubbrowser.service.RepositoryService;
 
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
-public class GitHubBrowser {
-    private final GitHubService gitHubService;
+public class RepositoryBrowser {
+    private final RepositoryService gitHubService;
 
     @GetMapping(value = "/repos/{user}", produces = "application/json")
     public List<Repository> sayHello(@PathVariable String user) {
