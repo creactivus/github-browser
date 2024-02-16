@@ -12,12 +12,12 @@ import pl.atipera.githubbrowser.model.Repository;
 import pl.atipera.githubbrowser.service.RepositoryService;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/repos")
 @RequiredArgsConstructor
 public class RepositoryBrowser {
     private final RepositoryService gitHubService;
 
-    @GetMapping(value = "/repos/{user}", produces = "application/json")
+    @GetMapping(value = "/{user}", produces = "application/json")
     public List<Repository> sayHello(@PathVariable String user) {
         return gitHubService.getUserRepositories(user);
     }

@@ -26,7 +26,7 @@ public class RepositoryService {
                     throw new UserNotFoundException("User " + user + " does not exist.");
                 })
                 .body(new ParameterizedTypeReference<>() {});
-        return repositories.stream()
+        return repositories.parallelStream()
                 .filter(Predicate.not(Repository::isFork))
                 .map(this::loadBranches)
                 .collect(Collectors.toList());
