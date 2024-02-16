@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,8 +23,9 @@ public class Repository {
     @JsonProperty
     private String name;
     private String owner;
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private boolean fork;
     private List<Branch> branches;
-    // private boolean fork
 
     @JsonProperty("owner")
     private void getOwnerLogin(Map<String, String> owner) {
