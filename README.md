@@ -28,7 +28,7 @@ mvn spring-boot:run
 curl -H "Accept: application/json" http://localhost:8080/api/repos/{username}
 ```
 
-```json
+```bash
 # sample output on user found
 [
   {
@@ -54,7 +54,7 @@ curl -H "Accept: application/json" http://localhost:8080/api/repos/{username}
 ]
 ```
 
-```json
+```bash
 # sample output on user not found
 {
   "status": "NOT_FOUND",
