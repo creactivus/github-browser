@@ -29,8 +29,10 @@ public class RepositoryControllerIT {
         .isNotEmpty()
         .jsonPath("$[0].owner")
         .isNotEmpty()
-        .jsonPath("$[0].branches[0].name").isNotEmpty()
-        .jsonPath("$[0].branches[0].lastCommit").isNotEmpty();
+        .jsonPath("$[0].branches[0].name")
+        .isNotEmpty()
+        .jsonPath("$[0].branches[0].lastCommit")
+        .isNotEmpty();
     }
 
     @Test
@@ -45,6 +47,7 @@ public class RepositoryControllerIT {
         .expectHeader()
         .contentType(APPLICATION_JSON)
         .expectBody()
-        .jsonPath("message").isEqualTo("User does not exist.");
+        .jsonPath("message")
+        .isEqualTo("User does not exist.");
     }
 }
