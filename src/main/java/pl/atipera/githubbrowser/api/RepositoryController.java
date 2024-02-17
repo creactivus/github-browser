@@ -18,7 +18,7 @@ public class RepositoryController {
     private final RepositoryBrowser gitHubService;
 
     @GetMapping(value = "/{user}", produces = "application/json")
-    public List<Repository> sayHello(@PathVariable String user) {
+    public List<Repository> getUserRepositories(@PathVariable String user) {
         return gitHubService.getUserRepositories(user);
     }
 }
