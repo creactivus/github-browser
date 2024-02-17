@@ -4,33 +4,63 @@ GitHub Browser is a Java project for browsing [GitHub](https://github.com/).
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
+Use [Apache Maven](https://maven.apache.org/) to install github-browser.
 ```bash
-pip install foobar
+mvn clean install
 ```
 
 ## Usage
 
-```python
-import foobar
+```bash
+# run tests
+mvn test
 
-# returns 'words'
-foobar.pluralize('word')
+# run integration test
+mvn test -Dtest="RepositoryControllerIT"
 
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+# run application
+mvn spring-boot:run
 ```
 
-## Contributing
+## GET /api/repos/{username}
+```bash
+# returns non-forked repositories for a user
+curl -H "Accept: application/json" http://localhost:8080/api/repos/{username}
+```
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+```json
+# sample output on user found
+[
+  {
+    "name": "arc",
+    "owner": "hornbeck",
+    "branches": [
+      {
+        "name": "master",
+        "lastCommit": "b57ea72aff051fc9f7fd003895f804dc81d760df"
+      }
+    ]
+  },
+  {
+    "name": "blerb-core",
+    "owner": "hornbeck",
+    "branches": [
+      {
+        "name": "master",
+        "lastCommit": "cfbe86545f97d2a058abf3fe7b63bfb22a5c9c3d"
+      }
+    ]
+  }
+]
+```
 
-Please make sure to update tests as appropriate.
+```json
+# sample output on user not found
+{
+  "status": "NOT_FOUND",
+  "message": "User does not exist."
+}
+```
 
 ## License
 
