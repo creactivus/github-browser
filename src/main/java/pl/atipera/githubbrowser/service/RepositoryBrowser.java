@@ -12,18 +12,18 @@ import pl.atipera.githubbrowser.error.exception.UserNotFoundException;
 import pl.atipera.githubbrowser.model.Repository;
 
 @Service
-public class RepositoryService {
+public class RepositoryBrowser {
     private static final String GITHUB_URL = "https://api.github.com";
-    private static final String USER_REPOS_URL = "/users/%s/repos";
-    private static final String REPO_BRANCHES_URL = "/repos/%s/%s/branches";
+    private static final String USER_REPOS_URI = "/users/%s/repos";
+    private static final String REPO_BRANCHES_URI = "/repos/%s/%s/branches";
     private final RestClient restClient = RestClient.create();
 
     public List<Repository> getUserRepositories(String user) {
         final List<Repository> repositories = restClient.get()
-                .uri(String.format(GITHUB_URL + USER_REPOS_URL, user))
+                .uri(String.format(GITHUB_URL + USER_REPOS_URI, user))
                 .retrieve()
                 .onStatus(status -> status.value() == 404, (request, response) -> {
-                    throw new UserNotFoundException("User " + user + " does not exist.");
+                    throw new UserNotFoundException("User does not exist.");
                 })
                 .body(new ParameterizedTypeReference<>() {});
         return repositories.parallelStream()
@@ -34,7 +34,7 @@ public class RepositoryService {
 
     private Repository loadBranches(Repository repository) {
         repository.setBranches(restClient.get()
-                .uri(String.format(GITHUB_URL + REPO_BRANCHES_URL, repository.getOwner(), repository.getName()))
+                .uri(String.format(GITHUB_URL + REPO_BRANCHES_URI, repository.getOwner(), repository.getName()))
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {}));
         return repository;
